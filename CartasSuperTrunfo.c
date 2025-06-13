@@ -1,83 +1,76 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-// Comando de Para Limpar o Terminal
-#ifdef _WIN32
-#define CLEAR "cls"
-#else
-#define CLEAR "clear"
-#endif
-
-struct Carta {
-  char codigo[10];
-  char estado;
-  char nome[60];
-  int populacao;
-  float area;
-  float pib;
-  int pontosTuristicos;
-};
-
-// Função para ler e armazenar os dados das cartas
-void lerCarta(struct Carta *carta) {
-  printf("Digite o código da cidade: ");
-  scanf("%s", carta->codigo);
-  getchar(); // Consome o '\n' deixado pelo scanf
-
-  printf("Digite a inicial do estado: ");
-  scanf("%c", &carta->estado);
-  getchar(); // Consome o '\n' deixado pelo scanf
-
-  printf("Digite o nome da cidade: ");
-  scanf("%s", carta->nome);
-  getchar(); // Consome o '\n' deixado pelo scanf
-
-  printf("Digite a população: ");
-  scanf("%d", &carta->populacao);
-
-  printf("Digite a área: ");
-  scanf("%f", &carta->area);
-
-  printf("Digite o PIB: ");
-  scanf("%f", &carta->pib);
-
-  printf("Digite o número de pontos turísticos: ");
-  scanf("%d", &carta->pontosTuristicos);
-
-  system(CLEAR);
-}
-
-// Função para exibir uma carta
-void exibirCarta(struct Carta carta, int numero) {
-  printf("Carta %d:\n", numero);
-  printf("Código: %s\n", carta.codigo);
-  printf("Estado: %c\n", carta.estado);
-  printf("Nome da Cidade: %s\n", carta.nome);
-  printf("População: %d\n", carta.populacao);
-  printf("Área: %.2f km²\n", carta.area);
-  printf("PIB: %.2f bilhões de reais\n", carta.pib);
-  printf("Número de Pontos Turísticos: %d\n\n", carta.pontosTuristicos);
-}
-
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
 int main() {
-  struct Carta carta1;
-  struct Carta carta2;
+    // Definição das variáveis para armazenar as propriedades das cidades
+    char codigoA[20], codigoB[20];
+    char cidadeA[50], cidadeB[50];
+    int populacaoA, populacaoB;
+    float areaA, areaB, pibA, pibB;
+    char continuar;
 
-  // Limpar a Tela
-  system(CLEAR);
+    do {
+        // Cadastro das Cartas:
+        // Solicita os dados da primeira cidade
+        printf("Digite o código da cidade 1: ");
+        scanf("%s", codigoA);
+        printf("Digite o nome da cidade 1: ");
+        scanf("%s", cidadeA);
+        printf("Digite a população da cidade 1: ");
+        scanf("%d", &populacaoA);
+        printf("Digite a área da cidade 1 (em km²): ");
+        scanf("%f", &areaA);
+        printf("Digite o PIB da cidade 1: ");
+        scanf("%f", &pibA);
 
-  // Salvar Dados da Carta 1:
-  lerCarta(&carta1);
-  printf("Insira os Dados da Segunda Carta:\n");
-  // Salvar Dados da Carta 2:
-  lerCarta(&carta2);
+        // Solicita os dados da segunda cidade
+        printf("\nDigite o código da cidade 2: ");
+        scanf("%s", codigoB);
+        printf("Digite o nome da cidade 2: ");
+        scanf("%s", cidadeB);
+        printf("Digite a população da cidade 2: ");
+        scanf("%d", &populacaoB);
+        printf("Digite a área da cidade 2 (em km²): ");
+        scanf("%f", &areaB);
+        printf("Digite o PIB da cidade 2: ");
+        scanf("%f", &pibB);
 
-  // Exibição dos Dados das Carta 1:
-  exibirCarta(carta1, 1);
-  // Exibição dos Dados das Carta 2:
-  exibirCarta(carta2, 2);
+        // Comparação de Cartas:
+        printf("\n--- Resultados da Comparação ---\n");
 
-  return 0;
+        // Comparação por população
+        if (populacaoA > populacaoB) {
+            printf("A cidade %s tem maior população (%d).\n", cidadeA, populacaoA);
+        } else if (populacaoA < populacaoB) {
+            printf("A cidade %s tem maior população (%d).\n", cidadeB, populacaoB);
+        } else {
+            printf("As cidades têm a mesma população (%d).\n", populacaoA);
+        }
+
+        // Comparação por área
+        if (areaA > areaB) {
+            printf("A cidade %s tem uma área maior (%.2f km²).\n", cidadeA, areaA);
+        } else if (areaA < areaB) {
+            printf("A cidade %s tem uma área maior (%.2f km²).\n", cidadeB, areaB);
+        } else {
+            printf("As cidades têm a mesma área (%.2f km²).\n", areaA);
+        }
+
+        // Comparação por PIB
+        if (pibA > pibB) {
+            printf("A cidade %s tem um PIB maior (R$ %.2f).\n", cidadeA, pibA);
+        } else if (pibA < pibB) {
+            printf("A cidade %s tem um PIB maior (R$ %.2f).\n", cidadeB, pibB);
+        } else {
+            printf("As cidades têm o mesmo PIB (R$ %.2f).\n", pibA);
+        }
+
+        // Pergunta se o usuário deseja comparar mais cidades
+        printf("\nDeseja comparar mais cidades? (s/n): ");
+        scanf(" %c", &continuar);
+
+    } while (continuar == 's' || continuar == 'S');
+
+    printf("Obrigado por usar o sistema de comparação de cidades!\n");
+    return 0;
 }
