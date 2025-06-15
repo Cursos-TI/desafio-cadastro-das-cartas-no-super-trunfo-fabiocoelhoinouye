@@ -7,9 +7,8 @@ int main() {
     char cidadeA[50], cidadeB[50];
     int populacaoA, populacaoB;
     float areaA, areaB, pibA, pibB;
-    char continuar;
-
-    do {
+   
+    
         // Cadastro das Cartas:
         // Solicita os dados da primeira cidade
         printf("Digite o código da cidade 1: ");
@@ -65,12 +64,8 @@ int main() {
             printf("As cidades têm o mesmo PIB (R$ %.2f).\n", pibA);
         }
 
-        // Pergunta se o usuário deseja comparar mais cidades
-        printf("\nDeseja comparar mais cidades? (s/n): ");
-        scanf(" %c", &continuar);
+        
 
-    } while (continuar == 's' || continuar == 'S');
 
-    printf("Obrigado por usar o sistema de comparação de cidades!\n");
     return 0;
 }
